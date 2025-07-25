@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { fetchBlogPosts } from "./Api";
+import BlogCard from "./components/blogCard";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -17,16 +18,17 @@ function App() {
   }, []);
   return (
     <>
-      {posts &&
-        posts.map(({ title, body, author }, i) => {
-          return (
-            <div key={i}>
-              <p>{title}</p>
-              <p>{body}</p>
-              <p>{author}</p>
-            </div>
-          );
-        })}
+      {posts && (
+        <section className="blogPostsContainer">
+          {posts.map(({ title, body, author }, i) => {
+            return (
+              <div key={i}>
+                <BlogCard title={title} body={body} author={author} i={i} />
+              </div>
+            );
+          })}
+        </section>
+      )}
       {error && <p>error</p>}
     </>
   );
