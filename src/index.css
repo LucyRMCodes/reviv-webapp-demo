@@ -33,8 +33,37 @@ body {
 
 .blogPostsContainer {
   width: 100vw;
+  max-width: 1440px;
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 5rem;
   justify-content: center;
+  margin: 0 auto;
+  gap: 0.25rem;
+}
+
+.hero {
+  /* background-image: url(/hero.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  overflow: hidden;
+  width: 100vw;
+  height: 30vh;
+  position: relative;
+}
+
+.hero img {
+  opacity: 0.6;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -30%);
+  z-index: -1;
+  width: 100%;
+  height: auto;
+}
+
+.demo-content {
+  position: relative;
 }

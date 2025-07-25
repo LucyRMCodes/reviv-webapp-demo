@@ -28,7 +28,15 @@
 
 .blogCardContainer .blurb {
   font-size: 1rem;
+  text-align: left;
   -webkit-line-clamp: 2;
+}
+
+.author {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .author h3 {

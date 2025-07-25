@@ -17,20 +17,34 @@ function App() {
       });
   }, []);
   return (
-    <>
+    <div className="main" style={{ marginTop: "10vh" }}>
+      <div className="hero">
+        <img src="hero.jpg" />
+        <h1
+          style={{
+            color: "#ee5626",
+            fontSize: "3rem",
+            textDecoration: "underline",
+          }}
+        >
+          What's New?
+        </h1>
+      </div>
       {posts && (
-        <section className="blogPostsContainer">
-          {posts.map(({ title, body, author }, i) => {
-            return (
-              <div key={i}>
-                <BlogCard title={title} body={body} author={author} i={i} />
-              </div>
-            );
-          })}
+        <section>
+          <section className="blogPostsContainer">
+            {posts.map(({ title, body, author }, i) => {
+              return (
+                <div key={i}>
+                  <BlogCard title={title} body={body} author={author} i={i} />
+                </div>
+              );
+            })}
+          </section>
         </section>
       )}
       {error && <p>error</p>}
-    </>
+    </div>
   );
 }
 
