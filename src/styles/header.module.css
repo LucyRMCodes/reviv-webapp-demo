@@ -14,7 +14,7 @@
   padding: 1vw 2vw;
 }
 
-.userInteractions {
+.headerSection {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -34,4 +34,9 @@
 .loginButton:hover {
   background-color: #ee5626ff;
   color: #f9f4ec;
+}
+
+.username {
+  font-family: "poppins";
+  color: #ee5626;
 }

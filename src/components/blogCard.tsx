@@ -19,7 +19,11 @@ function BlogCard({
       <h2>{title}</h2>
       <p className={styles.blurb}>{body}</p>
       <section className={styles.author}>
-        <IoPersonCircle fontSize={"1.5rem"} opacity={0.75} />
+        <IoPersonCircle
+          fontSize={"1.5rem"}
+          // opacity={0.75}
+          fill="#ee5626"
+        />
         <h3>{author}</h3>
       </section>
     </div>

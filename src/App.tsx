@@ -19,12 +19,16 @@ function App() {
   return (
     <div className="main" style={{ marginTop: "10vh" }}>
       <div className="hero">
-        <img src="hero.jpg" />
+        <img
+          src="hero.jpg"
+          aria-label="Image by İlhan Erce Feyizoğlu from Pixabay"
+        />
         <h1
           style={{
             color: "#ee5626",
             fontSize: "3rem",
             textDecoration: "underline",
+            fontFamily: "poppins bold",
           }}
         >
           What's New?

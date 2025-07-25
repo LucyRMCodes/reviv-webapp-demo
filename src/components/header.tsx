@@ -7,17 +7,29 @@ function Header() {
   return (
     <div className={styles.headerContainer}>
       <section className={styles.header}>
-        <img src="react.svg" />
-        <section className={styles.userInteractions}>
+        <section className={styles.headerSection}>
+          <img src="logo.png" style={{ aspectRatio: 8 / 10, height: "5vh" }} />
+          <h2 style={{ color: "#ee5626", fontFamily: "poppins bold" }}>
+            TechTestBlog
+          </h2>
+        </section>
+        <section className={styles.headerSection}>
+          {user && <h2 className={styles.username}>{user.name}</h2>}
           <button
             className={styles.loginButton}
             onClick={() => {
               user ? logout() : loginWithPopup();
             }}
           >
-            Login
+            {user ? "Logout" : "Login"}
           </button>
-          {user && <FaCirclePlus fill="#ee5626" fontSize={"2.5rem"} />}
+          {user && (
+            <FaCirclePlus
+              fill="#ee5626"
+              fontSize={"2.5rem"}
+              style={{ cursor: "pointer" }}
+            />
+          )}
         </section>
       </section>
     </div>
