@@ -31,11 +31,7 @@ function BlogPost() {
         />
         <h2>{post.author}</h2>
       </section>
-      <section>
-        {post.body.split("\n").map((segment) => {
-          return <p className={styles.body}>{segment}</p>;
-        })}
-      </section>
+      <p className={styles.body}>{post.body}</p>
     </div>
   );
 }

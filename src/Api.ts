@@ -26,6 +26,6 @@ export const fetchBlogPost = (post_id: string) => {
   });
 };
 
-export const postBlogPost = (author: string, title: string, body: string) => {
-  return blogApi.post("/post", { author, title, body });
+export const postBlogPost = (author: string, body: string, title: string) => {
+  return blogApi.post("/post", { author, body, title });
 };

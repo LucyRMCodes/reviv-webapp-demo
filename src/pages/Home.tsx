@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { fetchBlogPosts } from "../Api";
 import BlogCard from "../components/blogCard";
 import { Link } from "react-router-dom";
+import Loading from "../components/loading";
 
 function Home() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     fetchBlogPosts({})
@@ -14,6 +16,9 @@ function Home() {
       })
       .catch(() => {
         setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
@@ -21,6 +26,8 @@ function Home() {
     color: "inherit",
     textDecoration: "inherit",
   };
+
+  if (loading) return <Loading />;
 
   return (
     <div className="main" style={{ marginTop: "10vh" }}>

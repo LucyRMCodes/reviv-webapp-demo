@@ -31,4 +31,5 @@
   font-family: "poppins";
   font-size: 1.5rem;
   line-height: 2.5em;
+  white-space: pre-wrap;
 }
