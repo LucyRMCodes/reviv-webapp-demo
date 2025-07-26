@@ -20,6 +20,10 @@
   gap: 0.5rem;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 .loginButton {
   padding: 0.5rem 1rem;
   border: 1px solid #ee5626;

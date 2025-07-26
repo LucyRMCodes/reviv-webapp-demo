@@ -1,0 +1,34 @@
+.blogPostContainer {
+  width: 100vw;
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 5rem;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.blogPostContainer h1 {
+  font-family: "poppins bold";
+  font-size: 3rem;
+  text-align: center;
+}
+
+.blogPostContainer .author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  font-family: "poppins bold";
+  font-size: 0.75rem;
+  color: #ee5626;
+}
+
+.blogPostContainer .body {
+  font-family: "poppins";
+  font-size: 1.5rem;
+  line-height: 2.5em;
+}

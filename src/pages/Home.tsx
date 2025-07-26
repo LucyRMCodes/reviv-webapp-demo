@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import "../App.css";
 import { fetchBlogPosts } from "../Api";
 import BlogCard from "../components/blogCard";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchBlogPosts()
+    fetchBlogPosts({})
       .then((data) => {
         setPosts(data);
       })
@@ -16,6 +16,12 @@ function Home() {
         setError(true);
       });
   }, []);
+
+  const linkStyle = {
+    color: "inherit",
+    textDecoration: "inherit",
+  };
+
   return (
     <div className="main" style={{ marginTop: "10vh" }}>
       <div className="hero">
@@ -37,10 +43,17 @@ function Home() {
       {posts && (
         <section>
           <section className="blogPostsContainer">
-            {posts.map(({ title, body, author }, i) => {
+            {posts.map(({ title, body, author, post_id }) => {
               return (
-                <div key={i}>
-                  <BlogCard title={title} body={body} author={author} i={i} />
+                <div key={post_id}>
+                  <Link to={`/posts/${post_id}/${title}`} style={linkStyle}>
+                    <BlogCard
+                      title={title}
+                      body={body}
+                      author={author}
+                      i={post_id}
+                    />
+                  </Link>
                 </div>
               );
             })}
