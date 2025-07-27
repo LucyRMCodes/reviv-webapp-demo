@@ -47,10 +47,13 @@ function BlogPost() {
       <p className={styles.body}>{post.body}</p>
       {isAuthor && post_id && (
         <section className={styles.actions}>
-          <Link to={`/post-editor/${post_id}`} className={styles.editButton}>
+          <Link
+            to={`/post-editor/${post_id}`}
+            className={`button ${styles.editButton}`}
+          >
             Edit
           </Link>
-          <button className={styles.deleteButton}>Delete</button>
+          <button className={`button ${styles.deleteButton}`}>Delete</button>
         </section>
       )}
     </div>

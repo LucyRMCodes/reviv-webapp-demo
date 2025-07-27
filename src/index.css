@@ -71,3 +71,17 @@ body {
 .demo-content {
   position: relative;
 }
+
+.button {
+  outline: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-family: "poppins bold";
+  background-color: #ee5626;
+  color: #f9f4ec;
+  cursor: pointer;
+  width: fit-content;
+  text-decoration: inherit;
+  font-size: inherit;
+}

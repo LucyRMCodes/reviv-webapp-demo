@@ -9,12 +9,14 @@ function Loading({
 }) {
   return (
     <div className={styles.fullscreenContainer}>
-      {text && (
-        <div>
-          <h2>{text}</h2>
-        </div>
-      )}
-      {innerComponents && innerComponents}
+      <div className={styles.innerContainer}>
+        {text && (
+          <div>
+            <h2>{text}</h2>
+          </div>
+        )}
+        {innerComponents && innerComponents}
+      </div>
     </div>
   );
 }

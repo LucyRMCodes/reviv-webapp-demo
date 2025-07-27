@@ -3,7 +3,7 @@ import styles from "../styles/postEditor.module.css";
 import { fetchBlogPost, patchBlogPost, postBlogPost } from "../Api";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/loading";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function PostEditor() {
   const [title, setTitle] = useState("");
@@ -52,12 +52,6 @@ function PostEditor() {
   };
   return (
     <>
-      {posting && (
-        <Loading
-          text={published ? "Post published successfully" : "Publishing..."}
-          innerComponents={published && <button>Home</button>}
-        />
-      )}
       <form className={styles.postEditorContainer} onSubmit={handleSubmit}>
         <label htmlFor="title">Title</label>
         <input
@@ -99,6 +93,21 @@ function PostEditor() {
           </button>
         </section>
       </form>
+      {posting && (
+        <Loading
+          text={published ? "Post published successfully" : "Publishing..."}
+          innerComponents={
+            published && (
+              <Link
+                to={post_id ? `/posts/${user.sub}/${post_id}/${title}` : "/"}
+                className="button"
+              >
+                {post_id ? "View post" : "Home"}
+              </Link>
+            )
+          }
+        />
+      )}
     </>
   );
 }
