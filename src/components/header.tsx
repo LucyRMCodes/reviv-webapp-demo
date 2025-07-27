@@ -13,6 +13,7 @@ function Header() {
             <img
               src="/logo.png"
               style={{ aspectRatio: 8 / 10, height: "5vh" }}
+              alt="Tech Test Blog logo"
             />
             <h2 style={{ color: "#ee5626", fontFamily: "poppins bold" }}>
               TechTestBlog

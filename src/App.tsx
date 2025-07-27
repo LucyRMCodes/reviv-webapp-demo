@@ -10,7 +10,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/posts/:post_id/:title" element={<BlogPost />} />
+        <Route
+          path="/posts/:author_id/:post_id/:title"
+          element={<BlogPost />}
+        />
         <Route path="/post-editor" element={<PostEditor />} />
         <Route path="/post-editor/:post_id" element={<PostEditor />} />
       </Routes>

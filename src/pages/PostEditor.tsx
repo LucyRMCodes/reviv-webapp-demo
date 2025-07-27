@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/postEditor.module.css";
-import { postBlogPost } from "../Api";
+import { fetchBlogPost, patchBlogPost, postBlogPost } from "../Api";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../components/loading";
+import { useParams } from "react-router-dom";
 
 function PostEditor() {
   const [title, setTitle] = useState("");
@@ -12,18 +13,41 @@ function PostEditor() {
   const [published, setPublished] = useState(false);
 
   const { user } = useAuth0();
+  const { post_id } = useParams();
+
+  useEffect(() => {
+    if (post_id) {
+      fetchBlogPost(post_id).then(({ body, title }) => {
+        setTitle(title);
+        setBody(body);
+      });
+    }
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (user) {
       setPosting(true);
       const author = anon ? "Anonymous" : user?.name;
-      postBlogPost(author || "Anonymous", body, title).then((res) => {
-        if (res.status === 201) {
-          //   setPosting(false);
-          setPublished(true);
-        }
-      });
+      if (post_id) {
+        patchBlogPost(post_id, author || "Anonymous", body, title).then(
+          (res) => {
+            if (res.status === 200) {
+              //   setPosting(false);
+              setPublished(true);
+            }
+          }
+        );
+      } else {
+        postBlogPost(author || "Anonymous", user.sub, body, title).then(
+          (res) => {
+            if (res.status === 201) {
+              //   setPosting(false);
+              setPublished(true);
+            }
+          }
+        );
+      }
     }
   };
   return (
@@ -41,6 +65,7 @@ function PostEditor() {
           type="text"
           id="title"
           name="title"
+          value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -50,6 +75,7 @@ function PostEditor() {
           id="body"
           className={styles.bodyEditor}
           draggable={false}
+          value={body}
           onChange={(e) => {
             setBody(e.target.value);
           }}
@@ -68,7 +94,9 @@ function PostEditor() {
             <label htmlFor="anonymous">Post anonymously</label>
           </div>
 
-          <button disabled={!title || !body}>Publish</button>
+          <button disabled={!title || !body}>
+            {post_id ? "Update" : "Publish"}
+          </button>
         </section>
       </form>
     </>

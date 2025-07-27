@@ -5,9 +5,11 @@
   flex-direction: column;
   flex-wrap: wrap;
   padding: 5rem;
-  justify-content: center;
+  /* justify-content: center; */
+  align-items: center;
   margin: 0 auto;
   gap: 2rem;
+  margin-top: 10vh;
 }
 
 .blogPostContainer h1 {
@@ -32,4 +34,39 @@
   font-size: 1.5rem;
   line-height: 2.5em;
   white-space: pre-wrap;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.blogPostContainer .editButton,
+.blogPostContainer .deleteButton {
+  outline: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-family: "poppins bold";
+  color: #f9f4ec;
+  cursor: pointer;
+  width: fit-content;
+  text-decoration: inherit;
+  font-size: inherit;
+}
+
+.blogPostContainer .editButton {
+  background-color: #ee5626;
+}
+
+.blogPostContainer .deleteButton {
+  background-color: #d62828;
+}
+
+.blogPostContainer .editButton:active {
+  box-shadow: inset 10px 10px 20px #be451e, inset -10px -10px 20px #ff672e;
+}
+
+.blogPostContainer .deleteButton:active {
+  box-shadow: inset 10px 10px 20px #be451e, inset -10px -10px 20px #ff672e;
 }

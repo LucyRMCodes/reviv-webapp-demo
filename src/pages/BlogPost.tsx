@@ -1,25 +1,38 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchBlogPost } from "../Api";
 import styles from "../styles/blogPost.module.css";
 import { IoPersonCircle } from "react-icons/io5";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function BlogPost() {
-  const { post_id, title } = useParams();
-  const [post, setPost] = useState({ title: "", body: "", author: "" });
-  const [error, setError] = useState<boolean>(false);
+  const { post_id, author_id } = useParams();
+  const [post, setPost] = useState({
+    post_id: "",
+    title: "",
+    body: "",
+    author: "",
+    author_id: "",
+  });
+  const [error, setError] = useState<string>("");
+  const [isAuthor, setIsAuthor] = useState<boolean>(false);
+
+  const { user } = useAuth0();
 
   useEffect(() => {
-    if (post_id) {
+    if (post_id && author_id && user) {
       fetchBlogPost(post_id)
         .then((data) => {
           setPost(data);
+          if (author_id === user?.sub) {
+            setIsAuthor(true);
+          }
         })
-        .catch(() => {
-          setError(true);
+        .catch((err) => {
+          setError(err.message);
         });
     }
-  }, []);
+  }, [user]);
   return (
     <div className={styles.blogPostContainer}>
       <h1>{post.title}</h1>
@@ -32,6 +45,14 @@ function BlogPost() {
         <h2>{post.author}</h2>
       </section>
       <p className={styles.body}>{post.body}</p>
+      {isAuthor && post_id && (
+        <section className={styles.actions}>
+          <Link to={`/post-editor/${post_id}`} className={styles.editButton}>
+            Edit
+          </Link>
+          <button className={styles.deleteButton}>Delete</button>
+        </section>
+      )}
     </div>
   );
 }

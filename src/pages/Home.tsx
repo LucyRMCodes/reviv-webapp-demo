@@ -3,10 +3,11 @@ import { fetchBlogPosts } from "../Api";
 import BlogCard from "../components/blogCard";
 import { Link } from "react-router-dom";
 import Loading from "../components/loading";
+import Error from "../components/error";
 
 function Home() {
   const [posts, setPosts] = useState([]);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -14,8 +15,8 @@ function Home() {
       .then((data) => {
         setPosts(data);
       })
-      .catch(() => {
-        setError(true);
+      .catch((err) => {
+        setError(err.message);
       })
       .finally(() => {
         setLoading(false);
@@ -28,6 +29,7 @@ function Home() {
   };
 
   if (loading) return <Loading />;
+  if (error) return <Error errorMsg={error} />;
 
   return (
     <div className="main" style={{ marginTop: "10vh" }}>
@@ -35,6 +37,7 @@ function Home() {
         <img
           src="hero.jpg"
           aria-label="Image by İlhan Erce Feyizoğlu from Pixabay"
+          alt="Image by İlhan Erce Feyizoğlu from Pixabay"
         />
         <h1
           style={{
@@ -50,10 +53,13 @@ function Home() {
       {posts && (
         <section>
           <section className="blogPostsContainer">
-            {posts.map(({ title, body, author, post_id }) => {
+            {posts.map(({ title, body, author, author_id, post_id }) => {
               return (
                 <div key={post_id}>
-                  <Link to={`/posts/${post_id}/${title}`} style={linkStyle}>
+                  <Link
+                    to={`/posts/${author_id}/${post_id}/${title}`}
+                    style={linkStyle}
+                  >
                     <BlogCard
                       title={title}
                       body={body}
@@ -67,7 +73,6 @@ function Home() {
           </section>
         </section>
       )}
-      {error && <p>error</p>}
     </div>
   );
 }
