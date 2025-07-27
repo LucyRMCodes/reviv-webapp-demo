@@ -32,7 +32,7 @@ export const postBlogPost = (
   body: string,
   title: string
 ) => {
-  return blogApi.post("/post", { author, author_id, body, title });
+  return blogApi.post("/posts", { author, author_id, body, title });
 };
 
 export const patchBlogPost = (
@@ -42,4 +42,8 @@ export const patchBlogPost = (
   title: string
 ) => {
   return blogApi.patch(`/post/${post_id}`, { author, body, title });
+};
+
+export const deleteBlogPost = (post_id: string) => {
+  return blogApi.delete(`/posts/${post_id}`);
 };

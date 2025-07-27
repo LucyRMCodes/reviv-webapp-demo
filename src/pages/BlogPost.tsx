@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import { fetchBlogPost } from "../Api";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { deleteBlogPost, fetchBlogPost } from "../Api";
 import styles from "../styles/blogPost.module.css";
 import { IoPersonCircle } from "react-icons/io5";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -18,7 +18,7 @@ function BlogPost() {
   const [isAuthor, setIsAuthor] = useState<boolean>(false);
 
   const { user } = useAuth0();
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (post_id && author_id && user) {
       fetchBlogPost(post_id)
@@ -33,6 +33,14 @@ function BlogPost() {
         });
     }
   }, [user]);
+
+  const handleDelete = () => {
+    deleteBlogPost(post_id).then(() => {
+      console.log("deleted");
+      navigate("/");
+    });
+  };
+
   return (
     <div className={styles.blogPostContainer}>
       <h1>{post.title}</h1>
@@ -53,7 +61,12 @@ function BlogPost() {
           >
             Edit
           </Link>
-          <button className={`button ${styles.deleteButton}`}>Delete</button>
+          <button
+            onClick={handleDelete}
+            className={`button ${styles.deleteButton}`}
+          >
+            Delete
+          </button>
         </section>
       )}
     </div>
