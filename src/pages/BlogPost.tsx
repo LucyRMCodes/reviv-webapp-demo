@@ -20,7 +20,7 @@ function BlogPost() {
   const { user } = useAuth0();
   const navigate = useNavigate();
   useEffect(() => {
-    if (post_id && author_id && user) {
+    if (post_id && author_id) {
       fetchBlogPost(post_id)
         .then((data) => {
           setPost(data);

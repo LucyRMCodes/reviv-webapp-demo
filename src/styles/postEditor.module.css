@@ -80,17 +80,6 @@ input[type="checkbox"]::after {
   justify-content: space-between;
 }
 
-.endContainer button {
-  background-color: #ee5626;
-  outline: none;
-  border: 0;
-  border-radius: 12px;
-  padding: 1rem;
-  font-family: "poppins bold";
-  color: #f9f4ec;
-  cursor: pointer;
-}
-
 .endContainer button:active {
   box-shadow: inset 10px 10px 20px #be451e, inset -10px -10px 20px #ff672e;
 }
@@ -98,4 +87,5 @@ input[type="checkbox"]::after {
 .endContainer button:disabled {
   opacity: 0.75;
   cursor: not-allowed;
+  pointer-events: none;
 }

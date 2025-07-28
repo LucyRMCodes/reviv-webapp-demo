@@ -88,7 +88,7 @@ function PostEditor() {
             <label htmlFor="anonymous">Post anonymously</label>
           </div>
 
-          <button disabled={!title || !body}>
+          <button className="button" disabled={!title || !body}>
             {post_id ? "Update" : "Publish"}
           </button>
         </section>
