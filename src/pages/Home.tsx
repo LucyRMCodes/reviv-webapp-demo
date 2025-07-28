@@ -4,6 +4,7 @@ import BlogCard from "../components/blogCard";
 import { Link } from "react-router-dom";
 import Loading from "../components/loading";
 import Error from "../components/error";
+import Spinner from "../components/spinner";
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -28,7 +29,7 @@ function Home() {
     textDecoration: "inherit",
   };
 
-  if (loading) return <Loading />;
+  if (loading) return <Loading text="Loading" innerComponents={<Spinner />} />;
   if (error) return <Error errorMsg={error} />;
 
   return (

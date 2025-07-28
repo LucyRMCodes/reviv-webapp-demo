@@ -17,6 +17,7 @@
 }
 
 .innerContainer {
+  min-width: 30vw;
   cursor: inherit;
   display: flex;
   flex-direction: column;
@@ -27,4 +28,8 @@
   background-color: #f9f4ec;
   border-radius: 50px;
   box-shadow: 20px 20px 60px #d4cfc9;
+}
+
+.innerContainer h2 {
+  font-family: "poppins bold";
 }

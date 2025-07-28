@@ -4,6 +4,7 @@ import { deleteBlogPost, fetchBlogPost } from "../Api";
 import styles from "../styles/blogPost.module.css";
 import { IoPersonCircle } from "react-icons/io5";
 import { useAuth0 } from "@auth0/auth0-react";
+import Error from "../components/error";
 
 function BlogPost() {
   const { post_id, author_id } = useParams();
@@ -40,6 +41,8 @@ function BlogPost() {
       navigate("/");
     });
   };
+
+  if (error) return <Error errorMsg={error} />;
 
   return (
     <div className={styles.blogPostContainer}>
